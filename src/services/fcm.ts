@@ -1,19 +1,19 @@
 import {
   createFcmECDH,
   FcmClient,
-  FcmRegistration,
   generateFcmAuthSecret,
   registerToFCM,
 } from "@aracna/fcm";
 import { FcmCredentials, FcmRegistrationFull } from "../models/fcmModel.js";
-import { DiskStorage } from "../utils/diskStorage.js";
+import { AsyncStorage } from "@aracna/core";
 import { MultifactorRegisterRequest } from "../models/multifactorModel.js";
 
 export async function register(
-  credentials: FcmCredentials
+  credentials: FcmCredentials,
+  storage: AsyncStorage
 ): Promise<FcmRegistrationFull> {
-  if (await DiskStorage.has("fcm")) {
-    return (await DiskStorage.get("fcm")) as FcmRegistrationFull;
+  if (await storage.has("fcm")) {
+    return (await storage.get("fcm")) as FcmRegistrationFull;
   }
 
   const authSecret = generateFcmAuthSecret();
@@ -43,14 +43,15 @@ export async function register(
     ...registration,
   };
 
-  await DiskStorage.set("fcm", fcmRegistrationFull);
+  await storage.set("fcm", fcmRegistrationFull);
 
   return fcmRegistrationFull;
 }
 
 export async function listen(
   fcmRegistration: FcmRegistrationFull,
-  dataCallback: (data: MultifactorRegisterRequest) => void
+  dataCallback: (data: MultifactorRegisterRequest) => void,
+  storage: AsyncStorage
 ): Promise<() => void> {
   try {
     const client = new FcmClient({
@@ -63,7 +64,7 @@ export async function listen(
         privateKey: fcmRegistration.ece.privateKey,
       },
       storage: {
-        instance: DiskStorage,
+        instance: storage,
       },
     });
 

@@ -1,6 +1,6 @@
 {
   "name": "@alexstrnik/multifactor-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "CLI tool for bypassing multifactor authentication",
   "type": "module",
   "main": "dist/cli.js",
