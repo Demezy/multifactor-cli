@@ -14,7 +14,6 @@ pkgs.buildNpmPackage {
 
   nativeBuildInputs = [
     nodejs
-    pkgs.nodePackages.typescript
     pkgs.makeWrapper
   ];
 
