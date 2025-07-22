@@ -12,6 +12,19 @@ npm install -g @alexstrnik/multifactor-cli
 npx @alexstrnik/multifactor-cli
 ```
 
+### With nix
+
+be sure to enable `experimental-features = nix-command flakes` in your `nix.conf`
+
+```bash
+# try it out
+nix shell github:AlexStrNik/multifactor-cli 
+multifactor-cli
+
+# If repo cloned 
+nix run .
+```
+
 ## Features
 
 - Device registration via activation links
