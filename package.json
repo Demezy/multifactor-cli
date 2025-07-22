@@ -1,0 +1,42 @@
+{
+  "name": "@alexstrnik/multifactor-cli",
+  "version": "1.0.2",
+  "description": "CLI tool for bypassing multifactor authentication",
+  "type": "module",
+  "main": "dist/cli.js",
+  "bin": {
+    "multifactor-cli": "./dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "tsx src/cli.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "Alex Strijnev <alex.str.nik@gmail.com>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexstrnik/multifactor-cli.git"
+  },
+  "keywords": [
+    "multifactor",
+    "authentication",
+    "cli"
+  ],
+  "dependencies": {
+    "@aracna/fcm": "^1.0.29",
+    "chalk": "^5.4.1",
+    "node-fetch": "^3.3.2",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.15",
+    "@types/prompts": "^2.4.9",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  }
+}
