@@ -9,7 +9,8 @@ pkgs.buildNpmPackage {
   version = "1.0.3";
   src = ./.;
 
-  npmDepsHash = "sha512-wwV4cnthtQNDlouubT09PDvjiCMOhnB40bOKWNClQrQvtcdbWzGHh1pBYTEjwKCryGcMfXmZ0U7qDFn8JfJsaw==";
+  # npmDepsHash = lib.fakeHash;
+  npmDepsHash = "sha256-/nlqvsXZYxyL/otbX6mmhYpVrAbWE5wjGXeQFKmX/Os=";
 
   nativeBuildInputs = [
     nodejs
